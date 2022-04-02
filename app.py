@@ -24,6 +24,7 @@ best = load_model('final.h5')
 
 Upload = 'static/upload'
 
+
 app.config['uploadFolder'] = Upload
 
 @app.route("/pred", methods=[ 'POST'])
