@@ -24,8 +24,11 @@ best = load_model('final.h5')
 
 Upload = 'static/upload'
 
-if not os.path.exists(Upload):
+try:
     os.makedirs(Upload)
+except FileExistsError:
+    # directory already exists
+    pass
 app.config['uploadFolder'] = Upload
 
 @app.route("/pred", methods=[ 'POST'])
