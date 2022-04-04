@@ -22,13 +22,8 @@ actions = ['0', '1', '10', '2', '3', '4', '5', '6', '7', '8', '9', 'Ain',
 
 best = load_model('final.h5')
 
-Upload = 'static/upload'
+Upload = 'upload'
 
-try:
-    os.makedirs(Upload)
-except FileExistsError:
-    # directory already exists
-    pass
 app.config['uploadFolder'] = Upload
 
 @app.route("/pred", methods=[ 'POST'])
@@ -42,7 +37,7 @@ def upload_file():
         start_time = time.time()
         f.save(os.path.join(app.config['uploadFolder'], f.filename))
         print(f.filename)
-        ready_vedio = preprocess_vedio("static/upload/"+filename)
+        ready_vedio = preprocess_vedio("upload/"+filename)
 
         print(ready_vedio.shape)
         yhat = best.predict(ready_vedio)
@@ -53,7 +48,7 @@ def upload_file():
         print(label_num_str_map[ytrue[0]])
 
         print("--- %s seconds ---" % (time.time() - start_time))
-        os.remove("static/upload/"+filename)
+        os.remove("upload/"+filename)
         d = {
         "prediction":label_num_str_map[ytrue[0]],
         "number":ytrue[0]
