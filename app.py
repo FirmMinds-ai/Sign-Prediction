@@ -28,6 +28,11 @@ app.config['uploadFolder'] = Upload
 
 @app.route("/pred", methods=[ 'POST'])
 
+if os.path.isdir('upload'):
+    pass
+else:
+    os.mkdir('upload')
+
 def upload_file():
 
     if request.method == 'POST':
