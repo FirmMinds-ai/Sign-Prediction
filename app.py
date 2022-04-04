@@ -37,7 +37,7 @@ def upload_file():
         start_time = time.time()
         f.save(os.path.join(app.config['uploadFolder'], f.filename))
         print(f.filename)
-        ready_vedio = preprocess_vedio("upload/"+filename)
+        ready_vedio = preprocess_vedio("/upload/"+filename)
 
         print(ready_vedio.shape)
         yhat = best.predict(ready_vedio)
@@ -48,7 +48,7 @@ def upload_file():
         print(label_num_str_map[ytrue[0]])
 
         print("--- %s seconds ---" % (time.time() - start_time))
-        os.remove("upload/"+filename)
+        os.remove("/upload/"+filename)
         d = {
         "prediction":label_num_str_map[ytrue[0]],
         "number":ytrue[0]
