@@ -5,9 +5,10 @@ import os
 from model_pred import load_model,preprocess_vedio
 import numpy as np
 import time
+from flask_cors import CORS
 
 app=Flask(__name__)
-
+CORS(app)
 actions = ['0', '1', '10', '2', '3', '4', '5', '6', '7', '8', '9', 'Ain',
 'Alf', 'Alslam-Aliukom', 'Arabic-Language', 'Ba', 'Brother',
         'Cold', 'Come-in', 'Daah', 'Dal', 'Deaf', 'Death', 'Doctor',
